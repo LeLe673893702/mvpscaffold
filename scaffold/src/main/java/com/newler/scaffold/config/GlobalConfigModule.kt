@@ -12,4 +12,6 @@ import dagger.Module
  */
 @Module
 class GlobalConfigModule {
+    private var busStrategy : BusStrategy ?= null
+    private var retrofit :NetModule.RetrofitConfiguration ?= null
 }
