@@ -1,4 +1,4 @@
-package com.llc.smartterminal.base
+package com.newler.scaffold.base
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver

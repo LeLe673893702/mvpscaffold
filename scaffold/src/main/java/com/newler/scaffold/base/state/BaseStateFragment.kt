@@ -1,10 +1,10 @@
-package com.llc.smartterminal.base.state
+package com.newler.scaffold.base.state
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.llc.smartterminal.base.BaseFragment
+import com.newler.scaffold.base.BaseFragment
 import com.newler.state.StateManager
 
 /**

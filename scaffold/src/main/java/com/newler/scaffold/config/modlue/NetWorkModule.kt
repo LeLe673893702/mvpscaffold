@@ -1,4 +1,4 @@
-package com.newler.scaffold.config
+package com.newler.scaffold.config.modlue
 
 import android.app.Application
 import android.content.Context
@@ -6,6 +6,7 @@ import androidx.annotation.Nullable
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
+import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -20,29 +21,31 @@ import javax.inject.Singleton
  *
  */
 @Module
-abstract class NetModule {
+class NetWorkModule {
     @Singleton
     @Provides
     fun provideRetrofit(@Nullable application: Application,
-                        @Nullable retrofitConfiguration: RetrofitConfiguration,
-                        @Nullable builder: Retrofit.Builder,
+                        @Nullable retrofitConfiguration: RetrofitConfiguration?,
+                        @Nullable retrofitBuilder: Retrofit.Builder,
                         @Nullable okHttpClient: OkHttpClient,
+                        @Nullable baseUrl: HttpUrl,
                         gson: Gson) : Retrofit {
 
-        builder.client(okHttpClient)
+        retrofitBuilder.baseUrl(baseUrl)
+            .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
-        retrofitConfiguration.config(application, builder)
-        return builder.build()
+        retrofitConfiguration?.config(application, retrofitBuilder)
+        return retrofitBuilder.build()
     }
 
     @Singleton
     @Provides
     fun provideOkHttpClient(@Nullable application: Application,
-                            @Nullable okHttpClientConfiguration: OkHttpClientConfiguration,
-                            @Nullable builder: OkHttpClient.Builder): OkHttpClient {
-        okHttpClientConfiguration.config(application, builder)
-        return builder.build()
+                            @Nullable okHttpClientConfiguration: OkHttpClientConfiguration?,
+                            @Nullable okHttpClientBuilder: OkHttpClient.Builder): OkHttpClient {
+        okHttpClientConfiguration?.config(application, okHttpClientBuilder)
+        return okHttpClientBuilder.build()
     }
 
     @Singleton
@@ -51,7 +54,7 @@ abstract class NetModule {
 
     @Singleton
     @Provides
-    fun  provideOkHttpBuilder() = OkHttpClient.Builder()
+    fun provideOkHttpBuilder() = OkHttpClient.Builder()
 
     interface RetrofitConfiguration {
         fun config(@Nullable context:Context, @Nullable builder:Retrofit.Builder)

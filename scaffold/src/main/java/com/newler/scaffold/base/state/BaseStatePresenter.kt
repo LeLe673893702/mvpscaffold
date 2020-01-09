@@ -1,7 +1,6 @@
-package com.llc.smartterminal.base.state
+package com.newler.scaffold.base.state
 
-import android.content.Context
-import com.llc.smartterminal.base.BasePresenter
+import com.newler.scaffold.base.BasePresenter
 
 /**
  *

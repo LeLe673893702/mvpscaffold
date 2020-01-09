@@ -1,4 +1,4 @@
-package com.llc.smartterminal.base
+package com.newler.scaffold.base
 
 import androidx.fragment.app.FragmentActivity
 import com.uber.autodispose.AutoDisposeConverter

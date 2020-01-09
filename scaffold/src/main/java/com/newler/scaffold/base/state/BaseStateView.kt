@@ -1,8 +1,6 @@
 package com.newler.scaffold.base.state
 
-import androidx.fragment.app.FragmentActivity
-import com.llc.smartterminal.base.BaseView
-import com.uber.autodispose.AutoDisposeConverter
+import com.newler.scaffold.base.BaseView
 
 interface BaseStateView : BaseView {
     fun showLoadFailed()

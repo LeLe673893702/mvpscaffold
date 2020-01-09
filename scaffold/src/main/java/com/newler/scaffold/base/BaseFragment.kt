@@ -1,4 +1,4 @@
-package com.llc.smartterminal.base
+package com.newler.scaffold.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
-import com.newler.scaffold.config.BusStrategy
+import com.newler.scaffold.config.bus.BusStrategy
 import com.uber.autodispose.AutoDispose
 import com.uber.autodispose.AutoDisposeConverter
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
@@ -17,9 +17,11 @@ import javax.inject.Inject
 
 abstract class BaseFragment<T : BasePresenter> : Fragment() {
     @Inject
-    protected var mPresenter:T? = null
+    @JvmField
+    var mPresenter:T? = null
     @Inject
-    val bus: BusStrategy?= null
+    @JvmField
+    var bus: BusStrategy?= null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(getLayoutId(), container, false)
     }

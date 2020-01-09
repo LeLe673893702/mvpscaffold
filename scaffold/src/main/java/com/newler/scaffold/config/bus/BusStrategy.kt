@@ -1,4 +1,4 @@
-package com.newler.scaffold.config
+package com.newler.scaffold.config.bus
 
 /**
  *

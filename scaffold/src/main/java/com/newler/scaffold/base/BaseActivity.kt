@@ -1,11 +1,11 @@
-package com.llc.smartterminal.base
+package com.newler.scaffold.base
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
-import com.newler.scaffold.config.BusStrategy
+import com.newler.scaffold.config.bus.BusStrategy
 import com.uber.autodispose.AutoDispose
 import com.uber.autodispose.AutoDisposeConverter
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
@@ -14,10 +14,13 @@ import javax.inject.Inject
 
 abstract class BaseActivity<P : BasePresenter> : AppCompatActivity() {
     @Inject
-    protected var mPresenter:P? = null
+    @JvmField
+    var mPresenter:P? = null
 
     @Inject
-    val bus: BusStrategy?= null
+    @JvmField
+    var bus: BusStrategy?= null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())

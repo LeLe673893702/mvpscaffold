@@ -56,14 +56,14 @@ dependencies {
     }
 
 
-    implementation(rootProject.ext.dependencies["retrofit-converter-gson"]) {
+    api(rootProject.ext.dependencies["retrofit-converter-gson"]) {
         exclude module: 'gson'
         exclude module: 'okhttp'
         exclude module: 'okio'
         exclude module: 'retrofit'
     }
 
-    implementation(rootProject.ext.dependencies["retrofit-adapter-rxjava2"]) {
+    api(rootProject.ext.dependencies["retrofit-adapter-rxjava2"]) {
         exclude module: 'rxjava'
         exclude module: 'okhttp'
         exclude module: 'retrofit'
@@ -72,14 +72,9 @@ dependencies {
 
     api rootProject.ext.dependencies["okhttp3"]
     compileOnly rootProject.ext.dependencies["glide"]
-    kapt(rootProject.ext.dependencies["glide-compiler"]) {
-        exclude module: 'jsr305'
-    }
+    kapt(rootProject.ext.dependencies["glide-compiler"])
 
     api rootProject.ext.dependencies["gson"]
-
-    //test
-    api rootProject.ext.dependencies["timber"]
 
     api rootProject.ext.dependencies['autodispose']
 

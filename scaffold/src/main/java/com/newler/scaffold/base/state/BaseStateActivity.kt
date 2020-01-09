@@ -1,11 +1,7 @@
-package com.llc.smartterminal.base.state
+package com.newler.scaffold.base.state
 
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.FrameLayout
-import com.llc.smartterminal.base.BaseActivity
-import com.llc.smartterminal.base.BasePresenter
+import com.newler.scaffold.base.BaseActivity
+import com.newler.scaffold.base.BasePresenter
 import com.newler.state.StateManager
 
 /**
