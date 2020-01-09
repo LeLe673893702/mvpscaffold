@@ -9,10 +9,11 @@ import com.newler.scaffold.config.bus.BusStrategy
 import com.uber.autodispose.AutoDispose
 import com.uber.autodispose.AutoDisposeConverter
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
+import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
 
-abstract class BaseActivity<P : BasePresenter> : AppCompatActivity() {
+abstract class BaseActivity<P : BasePresenter> : DaggerAppCompatActivity() {
     @Inject
     @JvmField
     var mPresenter:P? = null

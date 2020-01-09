@@ -13,8 +13,8 @@ import javax.inject.Inject
  *
  */
 class RegisterPresenter @Inject constructor(
-    private val view : RegisterContract.View,
-    private val service: UserService
+     val view : RegisterContract.View,
+     val service: UserService
 ) : RegisterContract.Presenter {
     override fun register(
         username: String,

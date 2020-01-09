@@ -23,6 +23,5 @@ abstract class RegisterModule {
     @ActivityScope
     abstract fun provideView(view: RegisterActivity) : RegisterContract.View
 
-    @ContributesAndroidInjector
-    abstract fun inject() : RegisterActivity
+
 }

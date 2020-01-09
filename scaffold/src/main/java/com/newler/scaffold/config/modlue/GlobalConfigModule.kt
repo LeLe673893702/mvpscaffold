@@ -26,7 +26,9 @@ class GlobalConfigModule private constructor(builder: Builder) {
     private var gsonConfiguration: AppModule.GsonConfiguration ?= null
     private var stateAdapter: StateManager.Adapter ?= null
     private var baseUrl: HttpUrl ?= null
-
+    companion object{
+        fun newBuilder()  = Builder()
+    }
     init {
         this.busStrategy =
             builder.busStrategy
