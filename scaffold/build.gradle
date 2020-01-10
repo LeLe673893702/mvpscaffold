@@ -2,6 +2,9 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'org.jetbrains.dokka-android'
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
@@ -95,3 +98,4 @@ dependencies {
 //    api rootProject.ext.dependencies['smartrefresh-header']
 }
 
+apply from: '../bintray.gradle'

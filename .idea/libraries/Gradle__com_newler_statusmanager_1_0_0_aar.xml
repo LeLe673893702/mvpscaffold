@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.newler:statusmanager:1.0.0@aar">
     <CLASSES>
-      <root url="jar://F:/Newler/gradle/caches/transforms-2/files-2.1/0e63da7d29441c4bc909f5376ba8cb5f/statusmanager-1.0.0/jars/classes.jar!/" />
-      <root url="file://F:/Newler/gradle/caches/transforms-2/files-2.1/0e63da7d29441c4bc909f5376ba8cb5f/statusmanager-1.0.0/res" />
+      <root url="jar://F:/Newler/gradle/caches/transforms-2/files-2.1/cdbc1c856bf5fc38e2337287bf4f7b52/statusmanager-1.0.0/jars/classes.jar!/" />
+      <root url="file://F:/Newler/gradle/caches/transforms-2/files-2.1/cdbc1c856bf5fc38e2337287bf4f7b52/statusmanager-1.0.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://F:/Newler/gradle/caches/modules-2/files-2.1/com.newler/statusmanager/1.0.0/b32b4f095bb05ad1b3ddb2228a2184ce141a78ee/statusmanager-1.0.0-javadoc.jar!/" />
