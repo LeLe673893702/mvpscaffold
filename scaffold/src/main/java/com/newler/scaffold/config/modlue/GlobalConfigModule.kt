@@ -75,12 +75,7 @@ class GlobalConfigModule private constructor(builder: Builder) {
     @Provides
     @Nullable
     fun provideStateViewAdapter() : StateManager.Adapter? {
-        return object : StateManager.Adapter {
-            override fun getView(holder: StateManager.Holder, viewState: Int): StateView {
-                return null!!
-            }
-
-        }
+        return stateAdapter
     }
 
     @Singleton
@@ -130,7 +125,6 @@ class GlobalConfigModule private constructor(builder: Builder) {
 
 
         fun builder(): GlobalConfigModule {
-            if (busStrategy == null) busStrategy = RxBusStrategy()
             return GlobalConfigModule(this)
         }
 

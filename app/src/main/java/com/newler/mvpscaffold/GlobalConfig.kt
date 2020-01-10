@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.TextView
 import com.google.gson.GsonBuilder
 import com.newler.scaffold.config.MvpScaffoldConfig
+import com.newler.scaffold.config.bus.RxBusStrategy
 import com.newler.scaffold.config.modlue.AppModule
 import com.newler.scaffold.config.modlue.GlobalConfigModule
 import com.newler.scaffold.config.modlue.NetWorkModule
@@ -31,7 +32,7 @@ class GlobalConfig : MvpScaffoldConfig {
                     gsonBuilder.serializeNulls().enableComplexMapKeySerialization()
                 }
             })
-            .baseUrl("http://ark.dev.17173.com/api/v1")
+            .baseUrl("http://ark.dev.17173.com/api/v1/")
             .okHttpClient(object : NetWorkModule.OkHttpClientConfiguration {
                 override fun config(context: Context, builder: OkHttpClient.Builder) {
                     builder.connectTimeout(5, TimeUnit.SECONDS)
@@ -40,6 +41,7 @@ class GlobalConfig : MvpScaffoldConfig {
                         .retryOnConnectionFailure(true)
                 }
             })
+           .bus(RxBusStrategy())
            .stateViewAdapter(StateManagerAdapter(context))
            .builder()
     }

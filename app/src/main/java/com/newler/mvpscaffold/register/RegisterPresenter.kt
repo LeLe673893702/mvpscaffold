@@ -25,9 +25,12 @@ class RegisterPresenter @Inject constructor(
         service.register(username, email, password_confirmation, password)
             .compose(RxUtil.applySchedulers())
             .`as`(view.autoDispose())
-            .subscribe {
+            .subscribe ({
                 Log.e("RegisterPresenter", it)
-            }
+            }, {
+                it.printStackTrace()
+                Log.e("RegisterPresenter", it.toString())
+            })
 
     }
 

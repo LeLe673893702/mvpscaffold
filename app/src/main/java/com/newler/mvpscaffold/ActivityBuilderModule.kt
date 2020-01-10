@@ -15,6 +15,7 @@ import dagger.android.ContributesAndroidInjector
  */
 @Module
 interface ActivityBuilderModule {
+    @ActivityScope
     @ContributesAndroidInjector(modules = [RegisterModule::class])
-     fun inject() : RegisterActivity
+    fun inject() : RegisterActivity
 }

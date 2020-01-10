@@ -2,6 +2,7 @@ package com.newler.scaffold.config
 
 import android.app.Application
 import com.google.gson.Gson
+import com.newler.scaffold.config.bus.BusStrategy
 import com.newler.scaffold.config.modlue.AppModule
 import com.newler.scaffold.config.modlue.GlobalConfigModule
 import com.newler.scaffold.config.modlue.NetWorkModule
@@ -24,13 +25,15 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [AppModule::class, NetWorkModule::class, GlobalConfigModule::class])
 interface MvpScaffoldConfigComponent {
-    fun okHttpClient(): OkHttpClient?
+    fun okHttpClient(): OkHttpClient
 
-    fun gson(): Gson?
+    fun gson(): Gson
 
-    fun retrofit() : Retrofit?
+    fun retrofit() : Retrofit
 
-    fun stateManager() : StateManager?
+    fun stateManager() : StateManager
+
+    fun bus(): BusStrategy?
 
     @Component.Builder
     interface Builder {

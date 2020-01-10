@@ -1,10 +1,7 @@
 package com.newler.mvpscaffold.data
 
 import io.reactivex.Observable
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 /**
  *
@@ -14,17 +11,14 @@ import retrofit2.http.POST
  *
  */
 interface UserApi {
-    @FormUrlEncoded
-    @POST("/auth/identity/register")
+    @Headers("Content-Type:application/json")
+    @POST("auth/identity/register")
     fun register(
-        @Field("username") username:String,
-        @Field("email") email:String,
-        @Field("password_confirmation") password_confirmation:String,
-        @Field("password") password: String
+        @Body user:User
     ): Observable<String>
 
     @FormUrlEncoded
-    @POST("/auth/identity/login")
+    @POST("auth/identity/login")
     fun login(
         @Field("username") username:String,
         @Field("email") email:String

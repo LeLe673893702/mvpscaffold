@@ -14,13 +14,10 @@ import javax.inject.Inject
 
 
 abstract class BaseActivity<P : BasePresenter> : DaggerAppCompatActivity() {
-    @Inject
-    @JvmField
-    var mPresenter:P? = null
+    var mPresenter:P? = null @Inject set
 
-    @Inject
-    @JvmField
-    var bus: BusStrategy?= null
+
+    var bus: BusStrategy ?= null @Inject set
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +32,6 @@ abstract class BaseActivity<P : BasePresenter> : DaggerAppCompatActivity() {
             it.onStart()
             lifecycle.addObserver(it)
             bus?.register(it)
-            
         }
     }
 

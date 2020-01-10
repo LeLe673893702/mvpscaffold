@@ -1,5 +1,6 @@
 package com.newler.mvpscaffold.register
 
+import com.newler.scaffold.base.BasePresenter
 import com.newler.scaffold.config.MvpScaffoldConfigComponent
 import com.newler.scaffold.config.scope.ActivityScope
 import dagger.Binds
@@ -14,14 +15,12 @@ import dagger.android.ContributesAndroidInjector
  *
  */
 @Module
-abstract class RegisterModule {
+interface RegisterModule {
     @Binds
     @ActivityScope
-    abstract fun providePresenter(presenter: RegisterPresenter):RegisterContract.Presenter
+    fun providePresenter(presenter: RegisterPresenter):RegisterContract.Presenter
 
     @Binds
     @ActivityScope
-    abstract fun provideView(view: RegisterActivity) : RegisterContract.View
-
-
+    fun provideView(view: RegisterActivity) : RegisterContract.View
 }

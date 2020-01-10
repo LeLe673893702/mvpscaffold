@@ -1,14 +1,14 @@
 <component name="libraryTable">
   <library name="Gradle: com.uber.autodispose:autodispose-android:1.4.0@aar">
     <CLASSES>
-      <root url="jar://D:/刺雒/.gradle/caches/transforms-2/files-2.1/fe16b342e69c37ef8fd93163df67d851/autodispose-android-1.4.0/jars/classes.jar!/" />
-      <root url="file://D:/刺雒/.gradle/caches/transforms-2/files-2.1/fe16b342e69c37ef8fd93163df67d851/autodispose-android-1.4.0/res" />
+      <root url="jar://F:/Newler/gradle/caches/transforms-2/files-2.1/fe16b342e69c37ef8fd93163df67d851/autodispose-android-1.4.0/jars/classes.jar!/" />
+      <root url="file://F:/Newler/gradle/caches/transforms-2/files-2.1/fe16b342e69c37ef8fd93163df67d851/autodispose-android-1.4.0/res" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://D:/刺雒/.gradle/caches/modules-2/files-2.1/com.uber.autodispose/autodispose-android/1.4.0/59cac5cbc74a8094683721af5a49c7b7b3c77991/autodispose-android-1.4.0-javadoc.jar!/" />
+      <root url="jar://F:/Newler/gradle/caches/modules-2/files-2.1/com.uber.autodispose/autodispose-android/1.4.0/59cac5cbc74a8094683721af5a49c7b7b3c77991/autodispose-android-1.4.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://D:/刺雒/.gradle/caches/modules-2/files-2.1/com.uber.autodispose/autodispose-android/1.4.0/4093d4b92426257f11fb5167c40bf3724c337081/autodispose-android-1.4.0-sources.jar!/" />
+      <root url="jar://F:/Newler/gradle/caches/modules-2/files-2.1/com.uber.autodispose/autodispose-android/1.4.0/4093d4b92426257f11fb5167c40bf3724c337081/autodispose-android-1.4.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
