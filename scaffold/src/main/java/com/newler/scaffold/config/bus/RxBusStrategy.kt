@@ -12,10 +12,10 @@ import com.newler.scaffold.config.bus.BusStrategy
  */
 class RxBusStrategy : BusStrategy {
     override fun register(obj: Any) {
-        RxBus.get().register(obj)
+        ScaffoldBus.get().register(obj)
     }
 
     override fun unregister(obj: Any) {
-        RxBus.get().register(obj)
+        ScaffoldBus.get().register(obj)
     }
 }
