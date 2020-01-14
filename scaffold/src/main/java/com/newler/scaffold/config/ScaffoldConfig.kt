@@ -1,5 +1,6 @@
 package com.newler.scaffold.config
 
+import android.app.Application
 import android.content.Context
 import androidx.annotation.NonNull
 import com.newler.scaffold.config.modlue.GlobalConfigModule
@@ -11,6 +12,6 @@ import com.newler.scaffold.config.modlue.GlobalConfigModule
  * @date 2020/1/9
  *
  */
-interface MvpScaffoldConfig {
-    fun applyOptions(@NonNull context: Context,  @NonNull builder: GlobalConfigModule.Builder) : GlobalConfigModule
+interface ScaffoldConfig {
+    fun applyOptions(@NonNull application: Application,  @NonNull builder: GlobalConfigModule.Builder) : GlobalConfigModule
 }

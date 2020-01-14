@@ -1,5 +1,5 @@
 Properties properties = new Properties()
-properties.load(new FileInputStream("F:\\Code\\Android\\mvpscaffold\\bintray.properties"))
+properties.load(new FileInputStream("E:\\AndroidCode\\mvpscaffold\\bintray.properties"))
 
 def gitUrl = 'https://github.com/LeLe673893702/mvpscaffold.git'   // Git仓库的url
 def siteUrl = 'https://github.com/LeLe673893702/mvpscaffold'   // 项目的主页

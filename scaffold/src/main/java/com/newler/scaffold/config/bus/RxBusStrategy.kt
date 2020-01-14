@@ -18,4 +18,12 @@ class RxBusStrategy : BusStrategy {
     override fun unregister(obj: Any) {
         RxBus.get().register(obj)
     }
+
+    override fun post(obj: Any) {
+        RxBus.get().post(obj)
+    }
+
+    override fun post(tag: String, obj: Any) {
+        RxBus.get().post(tag, obj)
+    }
 }

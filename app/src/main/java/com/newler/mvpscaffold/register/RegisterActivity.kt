@@ -1,13 +1,13 @@
 package com.newler.mvpscaffold.register
 
 import android.util.Log
+import com.newler.mvpscaffold.DataManager
 import com.newler.scaffold.base.BaseFragment
 import com.newler.scaffold.base.BasePresenter
 import com.newler.mvpscaffold.R
 import com.newler.mvpscaffold.data.UserService
 import com.newler.scaffold.base.BaseActivity
 import kotlinx.android.synthetic.main.user_activity_register.*
-import javax.inject.Inject
 
 class RegisterActivity : BaseActivity<RegisterContract.Presenter>(), RegisterContract.View {
     override fun initView() {
@@ -29,4 +29,5 @@ class RegisterActivity : BaseActivity<RegisterContract.Presenter>(), RegisterCon
     }
 
     override fun getLayoutId()=R.layout.user_activity_register
+    override fun getPresenter() = RegisterPresenter(this, DataManager.instance.getUserService())
 }

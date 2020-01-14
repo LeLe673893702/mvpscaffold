@@ -9,15 +9,12 @@ import com.newler.scaffold.config.bus.BusStrategy
 import com.uber.autodispose.AutoDispose
 import com.uber.autodispose.AutoDisposeConverter
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
-import dagger.android.support.DaggerAppCompatActivity
-import javax.inject.Inject
+
+abstract class BaseActivity<P : BasePresenter> : AppCompatActivity() {
+    var mPresenter:P? = null
 
 
-abstract class BaseActivity<P : BasePresenter> : DaggerAppCompatActivity() {
-    var mPresenter:P? = null @Inject set
-
-
-    var bus: BusStrategy ?= null @Inject set
+    var bus: BusStrategy ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +23,7 @@ abstract class BaseActivity<P : BasePresenter> : DaggerAppCompatActivity() {
         initView()
 
         bus?.register(this)
-        
+        mPresenter = getPresenter()
         registerEvent()
         mPresenter?.let {
             it.onStart()
@@ -44,6 +41,8 @@ abstract class BaseActivity<P : BasePresenter> : DaggerAppCompatActivity() {
     @LayoutRes
     @Nullable
     abstract fun getLayoutId(): Int
+
+    abstract fun getPresenter() : P
 
     fun <T> autoDispose(): AutoDisposeConverter<T> {
         return AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(this))

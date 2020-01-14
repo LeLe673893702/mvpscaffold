@@ -3,7 +3,6 @@ package com.newler.mvpscaffold.register
 import android.util.Log
 import com.newler.mvpscaffold.RxUtil
 import com.newler.mvpscaffold.data.UserService
-import javax.inject.Inject
 
 /**
  *
@@ -12,7 +11,7 @@ import javax.inject.Inject
  * @date 2020/1/9
  *
  */
-class RegisterPresenter @Inject constructor(
+class RegisterPresenter constructor(
      val view : RegisterContract.View,
      val service: UserService
 ) : RegisterContract.Presenter {
