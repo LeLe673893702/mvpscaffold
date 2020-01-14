@@ -52,7 +52,6 @@ class NetWorkModule {
         return gsonBuilder.create()
     }
 
-
     interface RetrofitConfiguration {
         fun config(@Nullable context:Context, @Nullable builder:Retrofit.Builder)
     }

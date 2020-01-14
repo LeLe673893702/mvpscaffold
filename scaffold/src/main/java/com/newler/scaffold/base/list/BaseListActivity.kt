@@ -39,6 +39,12 @@ abstract class BaseListActivity<P:BaseListPresenter> : BaseStateActivity<P>(), B
     private fun initRefreshLayout() {
         refreshLayout.setEnableLoadMore(isLoadMoreEnable())
         refreshLayout.setEnableRefresh(isRefreshEnable())
+        refreshLayout.setOnRefreshListener {
+            mPresenter?.onRefresh()
+        }
+        refreshLayout.setOnLoadMoreListener {
+            mPresenter?.onLoadMore()
+        }
     }
 
     abstract fun registerAdapter(rvAdapter: MultiTypeAdapter)

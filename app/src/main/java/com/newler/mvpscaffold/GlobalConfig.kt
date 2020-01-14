@@ -29,7 +29,7 @@ class GlobalConfig : ScaffoldConfig {
     ): GlobalConfigModule {
        return builder
            .application(application)
-            .gson(object : AppInitialization.GsonConfiguration {
+            .gson(object : NetWorkModule.GsonConfiguration {
                 override fun config(context: Context, gsonBuilder: GsonBuilder) {
                     gsonBuilder.serializeNulls().enableComplexMapKeySerialization()
                 }
