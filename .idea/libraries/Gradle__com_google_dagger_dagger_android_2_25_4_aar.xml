@@ -1,14 +1,14 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.dagger:dagger-android:2.25.4@aar">
     <CLASSES>
-      <root url="jar://F:/Newler/gradle/caches/transforms-2/files-2.1/829d369e61b08ab4c2bbdcdb0160acb8/jetified-dagger-android-2.25.4/jars/classes.jar!/" />
-      <root url="file://F:/Newler/gradle/caches/transforms-2/files-2.1/829d369e61b08ab4c2bbdcdb0160acb8/jetified-dagger-android-2.25.4/res" />
+      <root url="jar://D:/刺雒/.gradle/caches/transforms-2/files-2.1/ab284c01540fcdb6f3c254b907dbac37/jetified-dagger-android-2.25.4/jars/classes.jar!/" />
+      <root url="file://D:/刺雒/.gradle/caches/transforms-2/files-2.1/ab284c01540fcdb6f3c254b907dbac37/jetified-dagger-android-2.25.4/res" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://F:/Newler/gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-android/2.25.4/79c2903732ed139217c522734b0984e43e147895/dagger-android-2.25.4-javadoc.jar!/" />
+      <root url="jar://D:/刺雒/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-android/2.25.4/79c2903732ed139217c522734b0984e43e147895/dagger-android-2.25.4-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://F:/Newler/gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-android/2.25.4/81552441111df2e03e755ebdf83db19858d91b71/dagger-android-2.25.4-sources.jar!/" />
+      <root url="jar://D:/刺雒/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-android/2.25.4/81552441111df2e03e755ebdf83db19858d91b71/dagger-android-2.25.4-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
