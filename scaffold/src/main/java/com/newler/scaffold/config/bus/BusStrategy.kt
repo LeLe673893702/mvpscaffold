@@ -10,4 +10,6 @@ package com.newler.scaffold.config.bus
 interface BusStrategy {
     fun register(obj: Any)
     fun unregister(obj: Any)
+    fun post(obj: Any)
+    fun post(tag: String, obj: Any)
 }

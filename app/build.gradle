@@ -40,11 +40,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     api rootProject.ext.dependencies['logger']
     implementation rootProject.ext.dependencies['logging-interceptor']
-    implementation rootProject.ext.dependencies['dagger2']
-    implementation rootProject.ext.dependencies['dagger2-android']
-    implementation rootProject.ext.dependencies['dagger2-android-support']
-    kapt rootProject.ext.dependencies['dagger2-android-processor']
-    kapt rootProject.ext.dependencies['dagger2-compiler']
+
     implementation project(path: ':scaffold')
 
 

@@ -4,14 +4,12 @@ import android.app.Application
 import android.content.Context
 import androidx.annotation.Nullable
 import com.google.gson.Gson
-import dagger.Module
-import dagger.Provides
+import com.google.gson.GsonBuilder
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
 
 /**
  *
@@ -20,27 +18,26 @@ import javax.inject.Singleton
  * @date 2020/1/8
  *
  */
-@Module
+
 class NetWorkModule {
-    @Singleton
-    @Provides
     fun provideRetrofit(@Nullable application: Application,
                         @Nullable retrofitConfiguration: RetrofitConfiguration?,
                         @Nullable retrofitBuilder: Retrofit.Builder,
                         @Nullable okHttpClient: OkHttpClient,
-                        @Nullable baseUrl: HttpUrl,
+                        @Nullable baseUrl: HttpUrl?,
                         gson: Gson) : Retrofit {
-
-        retrofitBuilder.baseUrl(baseUrl)
-            .client(okHttpClient)
+        baseUrl.run {
+            this?.let {
+                return@run  retrofitBuilder.baseUrl(it)
+            }
+            return@run retrofitBuilder
+        }.client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
         retrofitConfiguration?.config(application, retrofitBuilder)
         return retrofitBuilder.build()
     }
 
-    @Singleton
-    @Provides
     fun provideOkHttpClient(@Nullable application: Application,
                             @Nullable okHttpClientConfiguration: OkHttpClientConfiguration?,
                             @Nullable okHttpClientBuilder: OkHttpClient.Builder): OkHttpClient {
@@ -48,13 +45,13 @@ class NetWorkModule {
         return okHttpClientBuilder.build()
     }
 
-    @Singleton
-    @Provides
-    fun provideRetrofitBuilder() = Retrofit.Builder()
 
-    @Singleton
-    @Provides
-    fun provideOkHttpBuilder() = OkHttpClient.Builder()
+    fun provideGson(@Nullable application: Application, gsonConfiguration: GsonConfiguration?) : Gson{
+        val gsonBuilder = GsonBuilder()
+        gsonConfiguration?.config(application, gsonBuilder)
+        return gsonBuilder.create()
+    }
+
 
     interface RetrofitConfiguration {
         fun config(@Nullable context:Context, @Nullable builder:Retrofit.Builder)
@@ -62,5 +59,9 @@ class NetWorkModule {
 
     interface OkHttpClientConfiguration{
         fun config(@Nullable context:Context, @Nullable builder: OkHttpClient.Builder)
+    }
+
+    interface GsonConfiguration {
+        fun config(context:Context, gsonBuilder: GsonBuilder)
     }
 }

@@ -1,15 +1,14 @@
 package com.newler.scaffold.config.modlue
 
-import android.widget.TextView
-import androidx.annotation.Nullable
+import android.app.Application
 import com.newler.scaffold.config.bus.BusStrategy
-import com.newler.scaffold.config.bus.RxBusStrategy
+import com.newler.scaffold.config.bus.ScaffoldBus
 import com.newler.state.StateManager
-import com.newler.state.StateView
-import dagger.Module
-import dagger.Provides
+import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator
+import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator
 import okhttp3.HttpUrl
-import javax.inject.Singleton
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
 
 /**
  *
@@ -18,14 +17,16 @@ import javax.inject.Singleton
  * @date 2020/1/8
  *
  */
-@Module
 class GlobalConfigModule private constructor(builder: Builder) {
     private var busStrategy : BusStrategy?= null
     private var retrofitConfiguration : NetWorkModule.RetrofitConfiguration ?= null
     private var okHttpConfiguration: NetWorkModule.OkHttpClientConfiguration ?= null
-    private var gsonConfiguration: AppModule.GsonConfiguration ?= null
+    private var gsonConfiguration: NetWorkModule.GsonConfiguration ?= null
     private var stateAdapter: StateManager.Adapter ?= null
+    private var application: Application ?= null
     private var baseUrl: HttpUrl ?= null
+    private var footerCreator: DefaultRefreshFooterCreator ?= null
+    private var headerCreator: DefaultRefreshHeaderCreator ?= null
     companion object{
         fun newBuilder()  = Builder()
     }
@@ -42,56 +43,48 @@ class GlobalConfigModule private constructor(builder: Builder) {
             builder.stateViewAdapter
         this.baseUrl =
             builder.baseUrl
+        this.application =
+            builder.application
+        this.footerCreator =
+            builder.footerCreator
+        this.headerCreator =
+            builder.headerCreator
     }
 
-    @Singleton
-    @Provides
-    @Nullable
-    fun provideBusStrategy() : BusStrategy? {
-        return busStrategy
+    fun init() {
+        application?.let {
+            initApp(it)
+            buildNetWorkModule(it)
+        }
     }
 
-    @Singleton
-    @Provides
-    @Nullable
-    fun provideRetrofitConfiguration() : NetWorkModule.RetrofitConfiguration? {
-        return retrofitConfiguration
+    private fun initApp(application: Application) {
+        val appModule = AppInitialization()
+        appModule.initStateManager(stateAdapter)
+        appModule.initAppManger(application)
+        busStrategy?.let { appModule.initBus(it) }
+        footerCreator?.let { appModule.initFooterCreator(it) }
+        headerCreator?.let { appModule.initHeaderCreator(it) }
     }
 
-    @Singleton
-    @Provides
-    fun provideOkHttpClientConfiguration() : NetWorkModule.OkHttpClientConfiguration? {
-        return okHttpConfiguration
-    }
-
-    @Singleton
-    @Provides
-    @Nullable
-    fun provideGsonConfiguration() : AppModule.GsonConfiguration? {
-        return gsonConfiguration
-    }
-
-    @Singleton
-    @Provides
-    @Nullable
-    fun provideStateViewAdapter() : StateManager.Adapter? {
-        return stateAdapter
-    }
-
-    @Singleton
-    @Provides
-    @Nullable
-    fun provideBaseUrl() : HttpUrl? {
-        return baseUrl
+    private fun buildNetWorkModule(it:Application) {
+        val netWorkModule = NetWorkModule()
+        val gson = netWorkModule.provideGson(it, gsonConfiguration)
+        val okHttpClient = netWorkModule.provideOkHttpClient(it, okHttpConfiguration, OkHttpClient.Builder())
+        val retrofit = netWorkModule.provideRetrofit(it, retrofitConfiguration, Retrofit.Builder(), okHttpClient, baseUrl, gson)
+        RetrofitProvider.instance.inject(okHttpClient, retrofit, gson)
     }
 
     class Builder {
         internal var busStrategy : BusStrategy?= null
         internal var retrofitConfiguration : NetWorkModule.RetrofitConfiguration ?= null
         internal var okHttpConfiguration: NetWorkModule.OkHttpClientConfiguration ?= null
-        internal var gsonConfiguration: AppModule.GsonConfiguration?= null
+        internal var gsonConfiguration: NetWorkModule.GsonConfiguration?= null
         internal var stateViewAdapter: StateManager.Adapter ?= null
         internal var baseUrl: HttpUrl ?= null
+        internal var application: Application ?= null
+        internal var footerCreator: DefaultRefreshFooterCreator ?= null
+        internal var headerCreator: DefaultRefreshHeaderCreator ?= null
 
         fun bus(busStrategy: BusStrategy) : Builder {
             this.busStrategy = busStrategy
@@ -108,7 +101,7 @@ class GlobalConfigModule private constructor(builder: Builder) {
             return this
         }
 
-        fun gson(gsonConfiguration: AppModule.GsonConfiguration) : Builder {
+        fun gson(gsonConfiguration: NetWorkModule.GsonConfiguration) : Builder {
             this.gsonConfiguration = gsonConfiguration
             return this
         }
@@ -123,6 +116,20 @@ class GlobalConfigModule private constructor(builder: Builder) {
             return this
         }
 
+        fun application(application: Application) : Builder {
+            this.application = application
+            return this
+        }
+
+        fun footerCreator(footerCreator: DefaultRefreshFooterCreator) : Builder {
+            this.footerCreator = footerCreator
+            return this
+        }
+
+        fun headerCreator(headerCreator: DefaultRefreshHeaderCreator) : Builder {
+            this.headerCreator = headerCreator
+            return this
+        }
 
         fun builder(): GlobalConfigModule {
             return GlobalConfigModule(this)

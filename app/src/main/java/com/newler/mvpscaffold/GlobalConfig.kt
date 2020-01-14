@@ -1,12 +1,13 @@
 package com.newler.mvpscaffold
 
+import android.app.Application
 import android.content.Context
 import android.view.View
 import android.widget.TextView
 import com.google.gson.GsonBuilder
-import com.newler.scaffold.config.MvpScaffoldConfig
+import com.newler.scaffold.config.ScaffoldConfig
 import com.newler.scaffold.config.bus.RxBusStrategy
-import com.newler.scaffold.config.modlue.AppModule
+import com.newler.scaffold.config.modlue.AppInitialization
 import com.newler.scaffold.config.modlue.GlobalConfigModule
 import com.newler.scaffold.config.modlue.NetWorkModule
 import com.newler.state.StateManager
@@ -21,13 +22,14 @@ import java.util.concurrent.TimeUnit
  * @date 2020/1/9
  *
  */
-class GlobalConfig : MvpScaffoldConfig {
+class GlobalConfig : ScaffoldConfig {
     override fun applyOptions(
-        context: Context,
+        application: Application,
         builder: GlobalConfigModule.Builder
     ): GlobalConfigModule {
        return builder
-            .gson(object : AppModule.GsonConfiguration {
+           .application(application)
+            .gson(object : AppInitialization.GsonConfiguration {
                 override fun config(context: Context, gsonBuilder: GsonBuilder) {
                     gsonBuilder.serializeNulls().enableComplexMapKeySerialization()
                 }
@@ -42,7 +44,7 @@ class GlobalConfig : MvpScaffoldConfig {
                 }
             })
            .bus(RxBusStrategy())
-           .stateViewAdapter(StateManagerAdapter(context))
+           .stateViewAdapter(StateManagerAdapter(application))
            .builder()
     }
 

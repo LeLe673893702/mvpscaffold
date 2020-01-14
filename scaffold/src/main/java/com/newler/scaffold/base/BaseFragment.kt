@@ -13,14 +13,9 @@ import com.newler.scaffold.config.bus.BusStrategy
 import com.uber.autodispose.AutoDispose
 import com.uber.autodispose.AutoDisposeConverter
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
-import javax.inject.Inject
 
-abstract class BaseFragment<T : BasePresenter> : Fragment() {
-    @Inject
-    @JvmField
-    var mPresenter:T? = null
-    @Inject
-    @JvmField
+abstract class BaseFragment<P : BasePresenter> : Fragment() {
+    var mPresenter:P? = null
     var bus: BusStrategy?= null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(getLayoutId(), container, false)
@@ -33,7 +28,7 @@ abstract class BaseFragment<T : BasePresenter> : Fragment() {
         if (useRxBus()) {
             bus?.register(this)
         }
-
+        mPresenter = getPresenter()
         registerEvent()
         mPresenter?.let {
             it.onStart()
@@ -45,6 +40,8 @@ abstract class BaseFragment<T : BasePresenter> : Fragment() {
     }
 
     abstract fun initView()
+
+    abstract fun getPresenter() : P
 
     abstract fun registerEvent()
 

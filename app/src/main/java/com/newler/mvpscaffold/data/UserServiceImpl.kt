@@ -1,9 +1,6 @@
 package com.newler.mvpscaffold.data
 
-import com.google.gson.Gson
 import io.reactivex.Observable
-import retrofit2.Retrofit
-import javax.inject.Inject
 
 /**
  *
@@ -12,13 +9,8 @@ import javax.inject.Inject
  * @date 2020/1/9
  *
  */
-class UserServiceImpl @Inject constructor() : UserService {
-    lateinit var retrofit: Retrofit
-    @Inject set
+class UserServiceImpl(private val userApi: UserApi) : UserService {
 
-    private val userApi by lazy {
-        retrofit.create(UserApi::class.java)
-    }
     override fun register(
         username: String,
         email: String,
