@@ -88,14 +88,10 @@ dependencies {
         exclude module: 'rxjava'
     }
 
-    implementation rootProject.ext.dependencies['dagger2']
-    implementation rootProject.ext.dependencies['dagger2-android']
-    implementation rootProject.ext.dependencies['dagger2-android-support']
-    kapt rootProject.ext.dependencies['dagger2-android-processor']
-    kapt rootProject.ext.dependencies['dagger2-compiler']
+    api rootProject.ext.dependencies['smartrefresh']
+    api rootProject.ext.dependencies['smartrefresh-header']
 
-//    implementation rootProject.ext.dependencies['smartrefresh']
-//    api rootProject.ext.dependencies['smartrefresh-header']
+    api rootProject.ext.dependencies['multitype']
 }
 
 apply from: '../bintray.gradle'
