@@ -40,6 +40,12 @@ abstract class BaseListFragment<P:BaseListPresenter> : BaseStateFragment<P>(), B
     private fun initRefreshLayout() {
         refreshLayout.setEnableLoadMore(isLoadMoreEnable())
         refreshLayout.setEnableRefresh(isRefreshEnable())
+        refreshLayout.setOnRefreshListener {
+            mPresenter?.onRefresh()
+        }
+        refreshLayout.setOnLoadMoreListener {
+            mPresenter?.onLoadMore()
+        }
     }
 
     abstract fun registerAdapter(rvAdapter: MultiTypeAdapter)
