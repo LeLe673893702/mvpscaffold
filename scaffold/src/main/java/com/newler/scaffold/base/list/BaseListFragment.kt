@@ -41,7 +41,7 @@ abstract class BaseListFragment<P:BaseListPresenter> : BaseStateFragment<P>(), B
         registerItemViewBinder(rvAdapter)
     }
 
-    private fun getLayoutManager() :RecyclerView.LayoutManager {
+    protected fun getLayoutManager() :RecyclerView.LayoutManager {
         return LinearLayoutManager(context, RecyclerView.VERTICAL, false)
     }
 

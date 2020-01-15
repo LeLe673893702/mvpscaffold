@@ -41,7 +41,7 @@ abstract class BaseListActivity<P:BaseListPresenter> : BaseStateActivity<P>(), B
         registerItemViewBinder(rvAdapter)
     }
 
-    private fun getLayoutManager() :RecyclerView.LayoutManager {
+    protected fun getLayoutManager() :RecyclerView.LayoutManager {
         return LinearLayoutManager(this, RecyclerView.VERTICAL, false)
     }
 
