@@ -33,6 +33,13 @@ abstract class BaseStateFragment<T : BaseStatePresenter> : BaseFragment<T>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        mPresenter?.onLoadData()
+
+        withRetryListener()
+    }
+
+    protected fun withRetryListener() {
         holder?.withRetryListener(Runnable {
             mPresenter?.onRetry()
         })

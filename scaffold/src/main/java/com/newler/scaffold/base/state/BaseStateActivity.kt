@@ -1,5 +1,6 @@
 package com.newler.scaffold.base.state
 
+import android.os.Bundle
 import com.newler.scaffold.base.BaseActivity
 import com.newler.scaffold.base.BasePresenter
 import com.newler.state.StateManager
@@ -11,9 +12,23 @@ import com.newler.state.StateManager
  * @date 2019/12/13
  *
  */
-abstract class BaseStateActivity<T : BasePresenter> : BaseActivity<T>() {
+abstract class BaseStateActivity<T : BaseStatePresenter> : BaseActivity<T>() {
     protected val holder by lazy {
         StateManager.instance.wrap(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        mPresenter?.onLoadData()
+
+        withRetryListener()
+    }
+
+    protected fun withRetryListener() {
+        holder?.withRetryListener(Runnable {
+            mPresenter?.onRetry()
+        })
     }
 
     fun showLoadFailed() {

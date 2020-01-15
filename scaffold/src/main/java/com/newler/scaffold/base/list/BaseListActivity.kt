@@ -1,5 +1,6 @@
 package com.newler.scaffold.base.list
 
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.drakeet.multitype.MultiTypeAdapter
 import com.newler.scaffold.R
@@ -18,7 +19,7 @@ abstract class BaseListActivity<P:BaseListPresenter> : BaseStateActivity<P>(), B
         findViewById<SmartRefreshLayout>(R.id.smartRefreshLayout)
     }
 
-    protected val recyclerView: RecyclerView by lazy {
+    protected val recyclerView: RecyclerView? by lazy {
         findViewById<RecyclerView>(R.id.recycleView)
     }
 
@@ -31,14 +32,35 @@ abstract class BaseListActivity<P:BaseListPresenter> : BaseStateActivity<P>(), B
         initRefreshLayout()
     }
 
+    /**
+     * 初始化recycleview
+     */
     private fun initRecycle() {
-        recyclerView.adapter = rvAdapter
-        registerAdapter(rvAdapter)
+        recyclerView?.adapter = rvAdapter
+        recyclerView?.layoutManager = getLayoutManager()
+        registerItemViewBinder(rvAdapter)
     }
 
+    private fun getLayoutManager() :RecyclerView.LayoutManager {
+        return LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+    }
+
+    /**
+     * 初始化下拉刷新组件
+     */
     private fun initRefreshLayout() {
         refreshLayout?.setEnableLoadMore(isLoadMoreEnable())
         refreshLayout?.setEnableRefresh(isRefreshEnable())
+    }
+
+    override fun registerEvent() {
+        registerRefreshLayoutListener()
+    }
+
+    /**
+     * 注册下拉加载事件
+     */
+    protected fun registerRefreshLayoutListener() {
         refreshLayout?.setOnRefreshListener {
             mPresenter?.onRefresh()
         }
@@ -47,7 +69,7 @@ abstract class BaseListActivity<P:BaseListPresenter> : BaseStateActivity<P>(), B
         }
     }
 
-    abstract fun registerAdapter(rvAdapter: MultiTypeAdapter)
+    abstract fun registerItemViewBinder(rvAdapter: MultiTypeAdapter)
 
     override fun refreshList(items: List<Any>) {
         rvAdapter.items = items
