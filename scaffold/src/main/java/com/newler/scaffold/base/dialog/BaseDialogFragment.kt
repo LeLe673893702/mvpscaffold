@@ -64,7 +64,7 @@ abstract class BaseDialogFragment<P : BasePresenter> : DialogFragment(), BaseDia
                 if (isAdded) {
                     it.supportFragmentManager.beginTransaction().remove(this@BaseDialogFragment).commit()
                 }
-                show(it.supportFragmentManager, this@BaseDialogFragment::class.simpleName)
+                show(it.supportFragmentManager, this@BaseDialogFragment::class.java.simpleName)
             }
         } catch (e: IllegalAccessException) {
             e.printStackTrace()
