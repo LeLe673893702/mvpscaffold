@@ -1,7 +1,6 @@
 package com.newler.scaffold.base.list
 
 import androidx.annotation.Nullable
-import androidx.recyclerview.widget.RecyclerView
 import com.drakeet.multitype.MultiTypeAdapter
 import com.newler.scaffold.base.state.BaseStateView
 
@@ -20,13 +19,13 @@ interface BaseListView :BaseStateView {
 
     fun finishRefreshing(succeed: Boolean)
 
-    fun finishLoadingMore(succeed: Boolean)
+    fun finishLoadMore(succeed: Boolean)
 
     fun setRefreshEnable(enable: Boolean)
 
     fun setLoadMoreEnable(enable: Boolean)
 
-    fun onLoadMoreRest()
+    fun onNoMoreData()
 
     fun isRefreshEnable(): Boolean
 

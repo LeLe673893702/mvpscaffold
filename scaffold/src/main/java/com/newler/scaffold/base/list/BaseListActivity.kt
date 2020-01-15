@@ -8,13 +8,13 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout
 
 /**
  *
- * @what
+ * @what 基础列表Activity
  * @author 17173
  * @date 2020/1/14
  *
  */
 abstract class BaseListActivity<P:BaseListPresenter> : BaseStateActivity<P>(), BaseListView {
-    protected val refreshLayout:SmartRefreshLayout by lazy {
+    protected val refreshLayout:SmartRefreshLayout? by lazy {
         findViewById<SmartRefreshLayout>(R.id.smartRefreshLayout)
     }
 
@@ -37,12 +37,12 @@ abstract class BaseListActivity<P:BaseListPresenter> : BaseStateActivity<P>(), B
     }
 
     private fun initRefreshLayout() {
-        refreshLayout.setEnableLoadMore(isLoadMoreEnable())
-        refreshLayout.setEnableRefresh(isRefreshEnable())
-        refreshLayout.setOnRefreshListener {
+        refreshLayout?.setEnableLoadMore(isLoadMoreEnable())
+        refreshLayout?.setEnableRefresh(isRefreshEnable())
+        refreshLayout?.setOnRefreshListener {
             mPresenter?.onRefresh()
         }
-        refreshLayout.setOnLoadMoreListener {
+        refreshLayout?.setOnLoadMoreListener {
             mPresenter?.onLoadMore()
         }
     }
@@ -60,23 +60,23 @@ abstract class BaseListActivity<P:BaseListPresenter> : BaseStateActivity<P>(), B
     }
 
     override fun finishRefreshing(succeed: Boolean) {
-        refreshLayout.finishRefresh(succeed)
+        refreshLayout?.finishRefresh(succeed)
     }
 
-    override fun finishLoadingMore(succeed: Boolean) {
-        refreshLayout.finishLoadMore(succeed)
+    override fun finishLoadMore(succeed: Boolean) {
+        refreshLayout?.finishLoadMore(succeed)
     }
 
     override fun setRefreshEnable(enable: Boolean) {
-        refreshLayout.setEnableRefresh(enable)
+        refreshLayout?.setEnableRefresh(enable)
     }
 
     override fun setLoadMoreEnable(enable: Boolean) {
-        refreshLayout.setEnableLoadMore(enable)
+        refreshLayout?.setEnableLoadMore(enable)
     }
 
-    override fun onLoadMoreRest() {
-        refreshLayout.setNoMoreData(true)
+    override fun onNoMoreData() {
+        refreshLayout?.finishLoadMoreWithNoMoreData()
     }
 
     override fun isRefreshEnable() = true
@@ -104,7 +104,7 @@ abstract class BaseListActivity<P:BaseListPresenter> : BaseStateActivity<P>(), B
     }
 
     override fun notifyItemRangeInserted(start: Int, count: Int) {
-        rvAdapter.notifyItemRangeChanged(start, count)
+        rvAdapter.notifyItemRangeInserted(start, count)
     }
 
     override fun notifyItemRemoved(position: Int) {
