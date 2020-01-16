@@ -16,7 +16,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout
  */
 abstract class BaseListFragment<P:BaseListPresenter> : BaseStateFragment<P>(), BaseListView {
     protected val refreshLayout:SmartRefreshLayout? by lazy {
-        view?.findViewById<SmartRefreshLayout>(R.id.smartRefreshLayout)
+        view?.findViewById<SmartRefreshLayout?>(R.id.smartRefreshLayout)
     }
 
     protected val recyclerView: RecyclerView? by lazy {

@@ -20,7 +20,7 @@ abstract class BaseListActivity<P:BaseListPresenter> : BaseStateActivity<P>(), B
     }
 
     protected val recyclerView: RecyclerView? by lazy {
-        findViewById<RecyclerView>(R.id.recycleView)
+        findViewById<RecyclerView?>(R.id.recycleView)
     }
 
     protected val rvAdapter: MultiTypeAdapter by lazy {

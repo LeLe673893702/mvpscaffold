@@ -25,7 +25,7 @@ class RegisterActivity : BaseActivity<RegisterContract.Presenter>(), RegisterCon
 
     }
 
-    override fun unRegisterEvent() {
+    override fun unregisterEvent() {
     }
 
     override fun getLayoutId()=R.layout.user_activity_register

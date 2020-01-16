@@ -91,7 +91,7 @@ abstract class BaseDialogFragment<P : BasePresenter> : DialogFragment(), BaseDia
 
         if (useBus()) ScaffoldBus.get().unregister(this)
 
-        unRegisterEvent()
+        unregisterEvent()
 
         super.onDetach()
     }

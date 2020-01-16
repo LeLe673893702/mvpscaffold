@@ -62,7 +62,7 @@ abstract class BaseFragment<P : BasePresenter> : Fragment(), BaseViewLifecycle<P
 
         if (useBus()) ScaffoldBus.get().unregister(this)
 
-        unRegisterEvent()
+        unregisterEvent()
 
         super.onDetach()
     }

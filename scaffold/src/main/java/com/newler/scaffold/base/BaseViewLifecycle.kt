@@ -15,7 +15,7 @@ interface BaseViewLifecycle<P> {
 
     fun registerEvent()
 
-    fun unRegisterEvent()
+    fun unregisterEvent()
 
     @LayoutRes
     @Nullable

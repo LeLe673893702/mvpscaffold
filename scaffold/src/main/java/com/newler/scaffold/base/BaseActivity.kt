@@ -55,7 +55,7 @@ abstract class BaseActivity<P : BasePresenter> : AppCompatActivity(), BaseViewLi
 
         if (useBus()) ScaffoldBus.get().unregister(this)
         
-        unRegisterEvent()
+        unregisterEvent()
         super.onDestroy()
     }
 
