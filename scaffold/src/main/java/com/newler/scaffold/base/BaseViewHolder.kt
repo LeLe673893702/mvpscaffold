@@ -11,15 +11,15 @@ import androidx.recyclerview.widget.RecyclerView
  * @date 2020/1/14
  *
  */
-class BaseViewHolder<ItemData>(view: View) : RecyclerView.ViewHolder(view) {
+internal class BaseViewHolder<ItemData>(view: View) : RecyclerView.ViewHolder(view) {
     private var itemData: ItemData?=null
     protected val context: Context by lazy {
         itemView.context
     }
 
-    fun getItemData() = itemData
+    fun getData() = itemData
 
-    fun setItemData(itemData: ItemData) {
+    fun setData(itemData: ItemData) {
         this.itemData = itemData
     }
 }
