@@ -9,17 +9,17 @@ import android.view.View
  * @date 2020/1/16
  *
  */
-internal class BaseChildViewHolder<ChildItemData>(
+open class BaseChildViewHolder<ChildItemData>(
     private val view: View,
-    private val viewHolder: BaseViewHolder<Any>
+    private val viewHolder: BaseViewHolder<*>
 ) {
     private var childData: ChildItemData ?= null
 
-    fun getChildData() = childData
+    open fun getChildData() = childData
 
-    fun getParentViewHolder() = viewHolder
+    open fun getParentViewHolder() = viewHolder
 
-    fun setChildData(childItemData: ChildItemData) {
+    open fun setChildData(childItemData: ChildItemData) {
         this.childData = childItemData
     }
 }
