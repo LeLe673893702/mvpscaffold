@@ -83,11 +83,6 @@ dependencies {
 
     api rootProject.ext.dependencies['statusmanager']
 
-    implementation rootProject.ext.dependencies['paging']
-    implementation (rootProject.ext.dependencies['paging-rxjava2']) {
-        exclude module: 'rxjava'
-    }
-
     api rootProject.ext.dependencies['smartrefresh']
     api rootProject.ext.dependencies['smartrefresh-header']
 

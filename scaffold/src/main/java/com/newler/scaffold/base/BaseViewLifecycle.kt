@@ -23,4 +23,5 @@ interface BaseViewLifecycle<P> {
 
     @Nullable
     fun getPresenter() : P
+
 }

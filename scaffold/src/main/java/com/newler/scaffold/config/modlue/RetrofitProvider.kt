@@ -16,6 +16,7 @@ class RetrofitProvider {
    lateinit var retrofit: Retrofit
    lateinit var gson: Gson
     companion object {
+        @JvmStatic
         val instance by lazy {
             RetrofitProvider()
         }

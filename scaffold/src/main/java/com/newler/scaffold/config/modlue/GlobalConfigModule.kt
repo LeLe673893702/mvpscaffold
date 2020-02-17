@@ -2,7 +2,7 @@ package com.newler.scaffold.config.modlue
 
 import android.app.Application
 import com.newler.scaffold.config.bus.BusStrategy
-import com.newler.scaffold.config.bus.ScaffoldBus
+import com.newler.scaffold.config.modlue.cache.Cache
 import com.newler.state.StateManager
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator
@@ -27,6 +27,7 @@ class GlobalConfigModule private constructor(builder: Builder) {
     private var baseUrl: HttpUrl ?= null
     private var footerCreator: DefaultRefreshFooterCreator ?= null
     private var headerCreator: DefaultRefreshHeaderCreator ?= null
+    private var cacheFactory: Cache.Factory? = null
     companion object{
         fun newBuilder()  = Builder()
     }
@@ -49,12 +50,15 @@ class GlobalConfigModule private constructor(builder: Builder) {
             builder.footerCreator
         this.headerCreator =
             builder.headerCreator
+        this.cacheFactory =
+            builder.cacheFactory
     }
 
     fun init() {
         application?.let {
             initApp(it)
             buildNetWorkModule(it)
+            buildCache()
         }
     }
 
@@ -67,12 +71,21 @@ class GlobalConfigModule private constructor(builder: Builder) {
         headerCreator?.let { appModule.initHeaderCreator(it) }
     }
 
+    /**
+     * 构建网络相关组件
+     */
     private fun buildNetWorkModule(it:Application) {
         val netWorkModule = NetWorkModule()
         val gson = netWorkModule.provideGson(it, gsonConfiguration)
         val okHttpClient = netWorkModule.provideOkHttpClient(it, okHttpConfiguration, OkHttpClient.Builder())
         val retrofit = netWorkModule.provideRetrofit(it, retrofitConfiguration, Retrofit.Builder(), okHttpClient, baseUrl, gson)
         RetrofitProvider.instance.inject(okHttpClient, retrofit, gson)
+    }
+
+    private fun buildCache() {
+        cacheFactory?.let {
+            CacheProvider.instance.inject(it)
+        }
     }
 
     class Builder {
@@ -85,6 +98,7 @@ class GlobalConfigModule private constructor(builder: Builder) {
         internal var application: Application ?= null
         internal var footerCreator: DefaultRefreshFooterCreator ?= null
         internal var headerCreator: DefaultRefreshHeaderCreator ?= null
+        internal var cacheFactory: Cache.Factory? = null
 
         fun bus(busStrategy: BusStrategy) : Builder {
             this.busStrategy = busStrategy
@@ -131,9 +145,14 @@ class GlobalConfigModule private constructor(builder: Builder) {
             return this
         }
 
+        fun cacheFactory(cacheFactory: Cache.Factory): Builder {
+            this.cacheFactory = cacheFactory
+            return this
+        }
+
+
         fun builder(): GlobalConfigModule {
             return GlobalConfigModule(this)
         }
-
     }
 }
