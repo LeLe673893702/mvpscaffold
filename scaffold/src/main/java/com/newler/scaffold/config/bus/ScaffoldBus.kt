@@ -1,8 +1,5 @@
 package com.newler.scaffold.config.bus
 
-import com.hwangjr.rxbus.Bus
-import com.hwangjr.rxbus.RxBus
-
 /**
  *
  * @what

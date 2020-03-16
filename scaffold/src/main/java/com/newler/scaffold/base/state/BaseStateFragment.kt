@@ -15,7 +15,7 @@ import com.newler.state.StateManager
  *
  */
 abstract class BaseStateFragment<T : BaseStatePresenter> : BaseFragment<T>() {
-    protected val holder by lazy {
+    protected open val holder by lazy {
         view?.let {
             StateManager.instance.wrap(it)
         }
@@ -57,7 +57,7 @@ abstract class BaseStateFragment<T : BaseStatePresenter> : BaseFragment<T>() {
     }
 
     fun showEmpty() {
-        holder?.showContent()
+        holder?.showEmpty()
     }
 
 }

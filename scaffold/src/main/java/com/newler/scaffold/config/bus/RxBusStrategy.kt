@@ -1,7 +1,7 @@
 package com.newler.scaffold.config.bus
 
 import com.hwangjr.rxbus.RxBus
-import com.newler.scaffold.config.bus.BusStrategy
+
 
 /**
  *
@@ -16,7 +16,7 @@ class RxBusStrategy : BusStrategy {
     }
 
     override fun unregister(obj: Any) {
-        RxBus.get().register(obj)
+        RxBus.get().unregister(obj)
     }
 
     override fun post(obj: Any) {

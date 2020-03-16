@@ -13,7 +13,7 @@ import com.newler.state.StateManager
  *
  */
 abstract class BaseStateActivity<T : BaseStatePresenter> : BaseActivity<T>() {
-    protected val holder by lazy {
+    protected open val holder by lazy {
         StateManager.instance.wrap(this)
     }
 
@@ -25,7 +25,7 @@ abstract class BaseStateActivity<T : BaseStatePresenter> : BaseActivity<T>() {
         withRetryListener()
     }
 
-    protected fun withRetryListener() {
+    protected open fun withRetryListener() {
         holder?.withRetryListener(Runnable {
             mPresenter?.onRetry()
         })

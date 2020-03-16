@@ -15,15 +15,15 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout
  *
  */
 abstract class BaseListFragment<P:BaseListPresenter> : BaseStateFragment<P>(), BaseListView {
-    protected val refreshLayout:SmartRefreshLayout? by lazy {
+    protected open val refreshLayout:SmartRefreshLayout? by lazy {
         view?.findViewById<SmartRefreshLayout?>(R.id.smartRefreshLayout)
     }
 
-    protected val recyclerView: RecyclerView? by lazy {
+    protected open val recyclerView: RecyclerView? by lazy {
         view?.findViewById<RecyclerView>(R.id.recycleView)
     }
 
-    protected val rvAdapter: MultiTypeAdapter by lazy {
+    protected open val rvAdapter: MultiTypeAdapter by lazy {
         MultiTypeAdapter()
     }
 
@@ -41,7 +41,7 @@ abstract class BaseListFragment<P:BaseListPresenter> : BaseStateFragment<P>(), B
         registerItemViewBinder(rvAdapter)
     }
 
-    protected fun getLayoutManager() :RecyclerView.LayoutManager {
+    protected open fun getLayoutManager() :RecyclerView.LayoutManager {
         return LinearLayoutManager(context, RecyclerView.VERTICAL, false)
     }
 
@@ -60,7 +60,7 @@ abstract class BaseListFragment<P:BaseListPresenter> : BaseStateFragment<P>(), B
     /**
      * 注册下拉加载事件
      */
-    protected fun registerRefreshLayoutListener() {
+    protected open fun registerRefreshLayoutListener() {
         refreshLayout?.setOnRefreshListener {
             mPresenter?.onRefresh()
         }
@@ -78,7 +78,7 @@ abstract class BaseListFragment<P:BaseListPresenter> : BaseStateFragment<P>(), B
 
     override fun loadMoreList(items: List<Any>, start: Int, count: Int) {
         rvAdapter.items = items
-        rvAdapter.notifyItemRangeChanged(start, count)
+        rvAdapter.notifyItemRangeInserted(start, count)
     }
 
     override fun finishRefreshing(succeed: Boolean) {

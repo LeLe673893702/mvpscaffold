@@ -47,10 +47,7 @@ dependencies {
         exclude module: 'rxjava'
     }
 
-    api (rootProject.ext.dependencies["rxbus"]) {
-        exclude module: 'rxjava'
-    }
-
+    api rootProject.ext.dependencies["rxbus"]
 
     //network
     api(rootProject.ext.dependencies["retrofit"]) {

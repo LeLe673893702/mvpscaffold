@@ -1,5 +1,6 @@
 package com.newler.scaffold.base
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +15,9 @@ import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
 abstract class BaseFragment<P : BasePresenter> : Fragment(), BaseViewLifecycle<P> {
     var mPresenter:P? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
 
         if (useBus()) ScaffoldBus.get().register(this)
 
