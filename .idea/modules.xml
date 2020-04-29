@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/mvpscaffold.iml" filepath="$PROJECT_DIR$/.idea/mvpscaffold.iml" />
-      <module fileurl="file://$PROJECT_DIR$/scaffold/scaffold.iml" filepath="$PROJECT_DIR$/scaffold/scaffold.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="mvpscaffold/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/mvpscaffold.iml" filepath="$PROJECT_DIR$/.idea/mvpscaffold.iml" group="mvpscaffold" />
+      <module fileurl="file://$PROJECT_DIR$/scaffold/scaffold.iml" filepath="$PROJECT_DIR$/scaffold/scaffold.iml" group="mvpscaffold/scaffold" />
     </modules>
   </component>
 </project>

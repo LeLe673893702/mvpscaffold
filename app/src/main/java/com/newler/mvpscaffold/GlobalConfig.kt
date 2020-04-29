@@ -3,6 +3,7 @@ package com.newler.mvpscaffold
 import android.app.Application
 import android.content.Context
 import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import com.google.gson.GsonBuilder
 import com.newler.scaffold.config.ScaffoldConfig
@@ -10,8 +11,8 @@ import com.newler.scaffold.config.bus.RxBusStrategy
 import com.newler.scaffold.config.modlue.AppInitialization
 import com.newler.scaffold.config.modlue.GlobalConfigModule
 import com.newler.scaffold.config.modlue.NetWorkModule
+import com.newler.scaffold.utils.ResourcesUtil
 import com.newler.state.StateManager
-import com.newler.state.StateView
 import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit
 
@@ -49,16 +50,16 @@ class GlobalConfig : ScaffoldConfig {
     }
 
     class StateManagerAdapter(private val context: Context) : StateManager.Adapter {
-        override fun getView(holder: com.newler.state.StateManager.Holder, viewState: Int): StateView {
-            return object : StateView {
-                override fun getView(): View {
-                    return TextView(context)
-                }
-
-                override fun showState(state: Int) {
-                }
-
+        override fun getView(holder: StateManager.Holder, viewState: Int): View {
+            val globalStatusView =  GlobalStatusView(holder.getContext(), viewState, holder)
+            val layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT)
+            globalStatusView.layoutParams = layoutParams
+            ResourcesUtil.getColor(R.color.colorAccent)?.let {
+                globalStatusView.setBackgroundColor(it)
             }
+            return globalStatusView
         }
 
     }
